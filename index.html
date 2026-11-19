@@ -13,5 +13,15 @@
 <header><h1>Bag Boutique</h1><p>Твоя ідеальна сумка чекає на тебе</p></header>
 <main>
 <h2>Наш каталог</h2>
+
+<div class="filters">
+<label>Пошук <input id="search" placeholder="Назва або бренд"></label>
+<label>Бренд <select id="brand"><option value="">Усі бренди</option><option>Chanel</option><option>Jacquemus</option><option>MIU MIU</option></select></label>
+<label>Категорія <select id="category"><option value="">Усі категорії</option><option>На кожен день</option><option>Кросбоді</option><option>На вихід</option></select></label>
+<label>Ціна <select id="sort"><option value="">Порядок каталогу</option><option value="asc">За зростанням</option><option value="desc">За спаданням</option></select></label>
+<button type="button" id="favorites" aria-pressed="false">Лише обране</button>
+<button type="button" class="secondary" id="reset">Очистити фільтри</button>
+</div>
+<p id="empty" hidden role="status">Сумок не знайдено.</p>
 <div id="catalog" class="grid"></div>
 </main></body></html>
