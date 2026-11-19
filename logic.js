@@ -41,6 +41,28 @@ const shop = (() => {
     return '';
   }
 
-  return { filterProducts, changeQuantity, cartTotal, validateCheckout };
+
+  const storageKey = 'bag-boutique:v1';
+
+  function loadState(storage, items) {
+    try {
+      const state = JSON.parse(storage.getItem(storageKey));
+      const ids = new Set(items.map(product => product.id));
+      const cart = Object.fromEntries(Object.entries(state?.cart || {}).filter(
+        ([id, quantity]) => ids.has(id) && Number.isSafeInteger(quantity) && quantity > 0
+      ));
+      const favorites = new Set(Array.isArray(state?.favorites) ? state.favorites.filter(id => ids.has(id)) : []);
+      return { cart, favorites };
+    } catch {
+      return { cart: {}, favorites: new Set() };
+    }
+  }
+
+  function saveState(storage, cart, favorites) {
+    try { storage.setItem(storageKey, JSON.stringify({ cart, favorites: [...favorites] })); }
+    catch { /* The shop remains usable in memory. */ }
+  }
+
+  return { filterProducts, changeQuantity, cartTotal, validateCheckout, loadState, saveState };
 })();
 if (typeof module !== 'undefined') module.exports = shop;

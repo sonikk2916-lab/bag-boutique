@@ -4,8 +4,13 @@ const get = id => document.getElementById(id);
 const dialog = get('cart');
 const form = document.querySelector('form');
 const controls = ['search', 'brand', 'category', 'sort'].map(get);
-let cart = {};
-const favorites = new Set();
+let storage;
+try { storage = window.localStorage; } catch { storage = null; }
+let { cart, favorites } = shop.loadState(storage, products);
+
+function persist() {
+  shop.saveState(storage, cart, favorites);
+}
 let favoritesOnly = false;
 let noticeTimer;
 
@@ -27,6 +32,7 @@ function notify(message) {
 
 function updateQuantity(id, delta) {
   cart = shop.changeQuantity(cart, id, delta);
+  persist();
   renderCart();
 }
 
@@ -54,6 +60,7 @@ function showCards(items) {
     const favorite = button(favorites.has(product.id) ? '♥ Обране' : '♡ Обране', () => {
       if (favorites.has(product.id)) favorites.delete(product.id);
       else favorites.add(product.id);
+      persist();
       renderCatalog();
       catalog.querySelector('[data-favorite="' + product.id + '"]')?.focus();
     });
@@ -111,6 +118,7 @@ form.addEventListener('submit', event => {
   get('message').textContent = error || 'Дякуємо! Ваше замовлення оформлено. Оплата не проводилася.';
   if (error) return;
   cart = {};
+  persist();
   form.reset();
   renderCart();
 });
