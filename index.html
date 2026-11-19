@@ -12,6 +12,7 @@
 <body>
 <header><h1>Bag Boutique</h1><p>Твоя ідеальна сумка чекає на тебе</p></header>
 <main>
+<button id="open-cart" type="button">Мій кошик <span id="count">0</span></button>
 <h2>Наш каталог</h2>
 
 <div class="filters">
@@ -24,4 +25,24 @@
 </div>
 <p id="empty" hidden role="status">Сумок не знайдено.</p>
 <div id="catalog" class="grid"></div>
+
+<section id="checkout">
+<h2>Оформлення замовлення</h2>
+<form novalidate>
+<label>Ім’я та прізвище <input name="customer" autocomplete="name" required></label>
+<label>Телефон <input name="phone" type="tel" autocomplete="tel" required></label>
+<label>Електронна пошта (необов’язково) <input name="email" type="email" autocomplete="email"></label>
+<button>Підтвердити замовлення</button>
+</form>
+<p id="message" role="status"></p>
+<p>Справжня оплата не проводиться.</p>
+</section>
+<dialog id="cart" aria-label="Мій кошик">
+<h2>Мій кошик</h2>
+<button id="close-cart" type="button">Закрити</button>
+<div id="positions"></div>
+<p>Разом <strong id="total">0 грн</strong></p>
+<button id="to-checkout" type="button">Перейти до оформлення</button>
+</dialog>
+<p id="notice" role="status" class="notice" hidden></p>
 </main></body></html>
