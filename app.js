@@ -26,9 +26,7 @@ function notify(message) {
 }
 
 function updateQuantity(id, delta) {
-  const product = products.find(item => item.id === id);
-  const firstWithName = products.find(item => item.name === product.name);
-  cart = shop.changeQuantity(cart, firstWithName.id, delta);
+  cart = shop.changeQuantity(cart, id, delta);
   renderCart();
 }
 
@@ -70,7 +68,7 @@ function renderCatalog() {
   const [query, brand, category, sort] = controls.map(control => control.value);
   const matches = shop.filterProducts(products, { query, brand, category, sort, favoritesOnly }, favorites);
   showCards(matches);
-  get('empty').hidden = true;
+  get('empty').hidden = matches.length > 0;
   get('favorites').setAttribute('aria-pressed', String(favoritesOnly));
 }
 

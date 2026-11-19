@@ -32,6 +32,9 @@ const shop = (() => {
   function validateCheckout(data, count) {
     if (count < 1) return 'Спочатку додайте товар до кошика.';
     if (data.name.trim().split(/\s+/).length < 2) return 'Укажіть ім’я та прізвище.';
+    if (!/^\+?[0-9 ()-]+$/.test(data.phone.trim()) || !/^[0-9]{10,15}$/.test(data.phone.replace(/[^0-9]/g, ''))) {
+      return 'Укажіть номер телефону з 10–15 цифрами.';
+    }
     if (data.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
       return 'Укажіть коректну електронну адресу.';
     }
