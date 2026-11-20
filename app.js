@@ -115,7 +115,9 @@ form.addEventListener('submit', event => {
   event.preventDefault();
   const { customer, phone, email } = form.elements;
   const error = shop.validateCheckout({ name: customer.value, phone: phone.value, email: email.value }, Object.keys(cart).length);
-  get('message').textContent = error || 'Дякуємо! Ваше замовлення оформлено. Оплата не проводилася.';
+    const orderTotal = currency.format(shop.cartTotal(cart, products));
+  get('message').textContent = error ||
+    'Дякуємо! Ваше замовлення оформлено. Сума: ' + orderTotal + ' грн. Оплата не проводилася.';
   if (error) return;
   cart = {};
   persist();
