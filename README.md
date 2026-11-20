@@ -25,3 +25,7 @@
 ## Тести
 
 Установіть Node.js 18 або новішу версію та виконайте `node --test tests/shop.test.js`. Пакети npm для запуску сайту і тестів не потрібні.
+
+## Клонування з GitHub
+
+Щоб отримати копію проєкту, виконайте `git clone https://github.com/sonikk2916-lab/bag-boutique.git`.
