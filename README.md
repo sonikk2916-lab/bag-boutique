@@ -29,3 +29,4 @@
 ## Клонування з GitHub
 
 Щоб отримати копію проєкту, виконайте `git clone https://github.com/sonikk2916-lab/bag-boutique.git`.
+Після клонування перейдіть до папки проєкту командою cd bag-boutique
