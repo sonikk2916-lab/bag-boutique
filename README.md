@@ -27,6 +27,7 @@
 Установіть Node.js 18 або новішу версію та виконайте `node --test tests/shop.test.js`. Пакети npm для запуску сайту і тестів не потрібні.
 
 ## Клонування з GitHub
-
+```bash
 git clone https://github.com/sonikk2916-lab/bag-boutique.git
 cd bag-boutique
+```
