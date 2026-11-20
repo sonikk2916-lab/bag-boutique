@@ -28,4 +28,7 @@
 
 ## Клонування з GitHub
 
-Щоб отримати копію проєкту, виконайте `git clone https://github.com/sonikk2916-lab/bag-boutique.git`.
+```bash
+git clone https://github.com/sonikk2916-lab/bag-boutique.git
+cd bag-boutique
+```
