@@ -83,7 +83,9 @@ function renderCart() {
   const lines = products.filter(product => cart[product.id]).map(product => {
     const line = document.createElement('p');
     const quantity = cart[product.id];
-    line.textContent = product.name + ' (' + product.brand + ') × ' + quantity + ' ';
+    const lineTotal = currency.format(product.price * quantity);
+    line.textContent = product.name + ' (' + product.brand + ') × ' + quantity +
+      ' — ' + lineTotal + ' грн ';
     const minus = button('−', () => updateQuantity(product.id, -1));
     minus.setAttribute('aria-label', 'Зменшити кількість — ' + product.name + ' ' + product.brand);
     const plus = button('+', () => updateQuantity(product.id, 1));
